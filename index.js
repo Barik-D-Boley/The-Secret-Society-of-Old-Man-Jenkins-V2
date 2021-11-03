@@ -1,147 +1,98 @@
-const http = require('http')
+const express = require('express')
+const app = express()
+const path = require('path')
 
-const server = http.createServer((req, res) => {
-    if (req.url === '/') {
-        res.writeHead(200, { 'content-type': 'text/html' })
-        res.write(`
-            <div>
-                <h1>The Secret Society of Old Man Jenkins</h1>
-                <p>So to seems you have heard of my new society to uncover the secrets fo the mysterious Old Man Jenkins. Not anyone is able to join this selective society. To join, you will need to complete 6 puzzles, proving your mental fortitude.</p>
-                <p>To begin, add "/puzzle1" onto the end of the url</p>
-            </div>
-    `);
-    res.end();
-    } else if (req.url === '/puzzle1') {
-        res.writeHead(200, { 'content-type': 'text/html' })
-        res.write(`
-            <div>
-                <img src="http://localhost:5000/puzzle1/images/puzzle1.png">
-                <a href='/hint1'>I need help</a>
-            </div>
-        `);
-        res.end();
-    } else if (req.url === '/hint1') {
-        res.writeHead(200, { 'content-type': 'text/html' })
-        res.write(`
-            <div>
-                <ul>
-                    <li>West Mec</li>
-                    <li>North East Campus</li>
-                    <li>Coding</li>
-                    <li>HTML</li>
-                    <li>VSCode</li>
-                    <li>Code Wars</li>
-                    <li>React</li>
-                </ul>
-                <a href='/puzzle1'>Go back</a>
-                <a href='/answerKey'>Answer Key</a>
-            </div>
-        `);
-        res.end();
-    } else if (req.url === '/puzzle2') {
-        res.writeHead(200, { 'content-type': 'text/html' })
-        res.write(`
-            <div>
-                
-            </div>
-        `);
-        res.end();
-    } else if (req.url === '/hint2') {
-        res.writeHead(200, { 'content-type': 'text/html' })
-        res.write(`
-            <div>
+// Homepage
+    app.get('/', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/homepage.html'))
+    })
 
-                <a href='/answerKey'>Answer Key</a>
-            </div>
-        `);
-        res.end();
-    } else if (req.url === '/puzzle3') {
-        res.writeHead(200, { 'content-type': 'text/html' })
-        res.write(`
-            <div>
-                
-            </div>
-        `);
-        res.end();
-    } else if (req.url === '/hint3') {
-        res.writeHead(200, { 'content-type': 'text/html' })
-        res.write(`
-            <div>
-                
-                <a href='/answerKey'>Answer Key</a>
-            </div>
-        `);
-        res.end();
-    } else if (req.url === '/puzzle4') {
-        res.writeHead(200, { 'content-type': 'text/html' })
-        res.write(`
-            <div>
-                <p>A girl has the same amount of brothers as sisters, but each brother has half as many brothers as he has sisters. How many brothers and sisters are there?</p>
-                <p>Example Answer: "/twoBrothersTwoSisters"</p>
-            </div>
-        `);
-        res.end();
-    } else if (req.url === '/hint4') {
-        res.writeHead(200, { 'content-type': 'text/html' })
-        res.write(`
-            <div>
-                <p>
-                    x = Sisters<br>
-                    y = Brothers<br>
+// Images
+    app.get('/images/puzzle1.PNG', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/images/puzzle1.PNG'))
+    })
+    app.get('/images/puzzle2.PNG', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/images/puzzle2.PNG'))
+    })
+    app.get('/images/answer2.PNG', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/images/answer2.PNG'))
+    })
+    app.get('/images/puzzle3.PNG', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/images/puzzle3.PNG'))
+    })
 
-                    (x-1) + y = 2y
-                    x + (y-1) = x + (y/2)
-                </p>
-                <a href='/answerKey'>Answer Key</a>
-            </div>
-        `);
-        res.end();
-    } else if (req.url === '/threeBrothersFourSisters') {
-        res.writeHead(200, { 'content-type': 'text/html' })
-        res.write(`
-            <div>
-                Puzzle 5      
-            </div>
-        `);
-        res.end();
-    } else if (req.url === '/hint5') {
-        res.writeHead(200, { 'content-type': 'text/html' })
-        res.write(`
-            <div>
-                
-                <a href='/answerKey'>Answer Key</a>
-            </div>
-        `);
-        res.end();
-    } else if (req.url === '/puzzle6') {
-        res.writeHead(200, { 'content-type': 'text/html' })
-        res.write(`
-            <div>
-                
-            </div>
-        `);
-        res.end();
-    } else if (req.url === '/hint6') {
-        res.writeHead(200, { 'content-type': 'text/html' })
-        res.write(`
-            <div>
-                
-                <a href='/answerKey'>Answer Key</a>
-            </div>
-        `);
-        res.end();
-    } 
-    
-    
-    else {
-        res.writeHead(200, { 'content-type': 'text/html' })
-        res.write(`
+// CSS
+    app.get('/style.css', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/style.css'))
+    })
+
+// First Puzzle
+    app.get('/puzzle1', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/puzzles/puzzle1.html'))
+    })
+    app.get('/puzzle1/hint', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/hints/hint1.html'))
+    })
+
+// Second Puzzle
+    app.get('/noErrors', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/puzzles/puzzle2.html'))
+    })
+    app.get('/noErrors/hint', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/hints/hint2.html'))
+    })
+
+// Third Puzzle
+    app.get('/bridge', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/puzzles/puzzle3.html'))
+    })
+    app.get('/bridge/hint', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/hints/hint3.html'))
+    })
+
+// Fourth Puzzle
+    app.get('/answer', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/puzzles/puzzle4.html'))
+    })
+    app.get('/answer/hint', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/hints/hint4.html'))
+    })
+
+// Fifth Puzzle
+    app.get('/threeBrothersFourSisters', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/puzzles/puzzle5.html'))
+    })
+    app.get('/threeBrothersFourSisters/hint', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/hints/hint5.html'))
+    })
+
+// Sixth Puzzle
+    app.get('/68', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/puzzles/puzzle6.html'))
+    })
+    app.get('/68/hint', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/hints/hint6.html'))
+    })
+
+// Final page
+    app.get('/true', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/final.html'))
+    })
+
+// Answer Key
+    app.get('/answerKey', (req, res) => {
+        res.status(200).sendFile(path.join(__dirname + '/pages/answerKey.html'))
+    })
+
+// Error Page
+    app.all('*', (req, res) => {
+        res.status(404).send(`
             <h1>Oops!</h1>
             <p>We can't seem to find the page you were looking for</p>
             <a href='/'>Back Home</a>
-        `);
-        res.end();
-    }
-})
+        `)
+    })
 
-server.listen(5000);
+app.listen(5000, () => {
+    console.log('Server is listening on port 5000...');
+})
