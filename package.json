@@ -1,0 +1,25 @@
+{
+  "name": "the-secret-society-of-old-man-jenkins-v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xBarikadex/The-Secret-Society-of-Old-Man-Jenkins-V2.git"
+  },
+  "author": "Barik Boley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xBarikadex/The-Secret-Society-of-Old-Man-Jenkins-V2/issues"
+  },
+  "homepage": "https://github.com/xBarikadex/The-Secret-Society-of-Old-Man-Jenkins-V2#readme",
+  "dependencies": {
+    "express": "^4.17.2",
+    "node": "^17.4.0",
+    "nodemon": "^2.0.15"
+  }
+}
